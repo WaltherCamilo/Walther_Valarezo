@@ -1,0 +1,33 @@
+<?php
+requiere 'conexion.php';
+ if (isset($_POST['login'])) {
+    $nombres = $_POST['fusuario'];
+    $contrasena = $_POST['contrasena'];
+
+$sql = "SELECET * FROM clientes WHERE nombres = '$nombres' AND contrasena = '$
+contrasena'";
+$resultado = mysqli_query($conexion, $sql);
+$num_registros = mysqli_query($resultado);
+
+if ($num_registros != 0) {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_star();
+}
+
+$_SESSION['USUARIO'] = $nombres;
+
+header(“file:///C:/Users/SoyPC/Desktop/GID/PAGINA%20DE%20CONEXION%20DE%20PHP%20A%20HTML5.html”);
+exit;
+} else {
+    echo   “hubo un error. por favor espere, verifica tu nombre de usuario y/o contraseña”  .  ”<
+        br>;
+    echo   "ERROR: "  .  $sql  .  "<br>"  . mysqli_error($conexion);
+ 
+
+    }
+
+
+
+
+
+
